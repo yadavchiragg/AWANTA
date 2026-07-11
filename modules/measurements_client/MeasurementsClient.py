@@ -111,7 +111,7 @@ def measure_country(country):
                 tr_results = json.loads(tr_ripe.stdout)
                 if tr_results and isinstance(tr_results, list):
                     
-                    hop_count = len(tr_results[0].get('result', []))
+                    hop_count = len(tr_results[0].get('result') or [])
             except Exception as tr_e:
                 logging.error(f"Error performing traceroute for probe {probe_id} in {country}: {tr_e}")
 
