@@ -83,9 +83,8 @@ def measure_country(country):
         "--size", str(size),
         "--renderer", "json"
     ]
-    ripe = subprocess.run(cmd, capture_output=True, shell=False, encoding="utf8")
-
     try:
+        ripe = subprocess.run(cmd, capture_output=True, shell=False, encoding="utf8")
         results = json.loads(ripe.stdout)
         for res in results:
             probe_id = str(res.get('prb_id'))
