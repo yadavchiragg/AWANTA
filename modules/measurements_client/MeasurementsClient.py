@@ -88,7 +88,7 @@ def measure_country(country):
         results = json.loads(ripe.stdout)
         for res in results:
             probe_id = str(res.get('prb_id'))
-            rtts = [r.get('rtt') for r in res.get('result', []) if r.get('rtt') is not None]
+            rtts = [r.get('rtt') for r in (res.get('result') or []) if r.get('rtt') is not None]
 
             avg_rtt = 0.0
             jitter = 0.0
