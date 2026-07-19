@@ -56,13 +56,16 @@ def validate_config(config):
         elif not all(isinstance(c, str) and len(c) == 2 for c in config["From"]):
             errors.append("'From' must be a list of 2-letter country codes (e.g. 'US', 'IN')")
 
-    if isinstance(config.get("NoOfProbes"), int) and config["NoOfProbes"] <= 0:
+    no_of_probes = config.get("NoOfProbes")
+    if isinstance(no_of_probes, int) and not isinstance(no_of_probes, bool) and no_of_probes <= 0:
         errors.append("'NoOfProbes' must be a positive integer")
 
-    if isinstance(config.get("Packets"), int) and config["Packets"] <= 0:
+    packets = config.get("Packets")
+    if isinstance(packets, int) and not isinstance(packets, bool) and packets <= 0:
         errors.append("'Packets' must be a positive integer")
 
-    if isinstance(config.get("Size"), int) and config["Size"] <= 0:
+    size = config.get("Size")
+    if isinstance(size, int) and not isinstance(size, bool) and size <= 0:
         errors.append("'Size' must be a positive integer")
 
     if errors:
