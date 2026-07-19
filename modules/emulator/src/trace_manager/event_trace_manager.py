@@ -42,7 +42,7 @@ class EventTraceManager(TraceManager):
                 raw_mapping = json.load(f)
             # Normalize country codes to upper-case and dpids to int
             return {str(country).upper(): int(dpid) for country, dpid in raw_mapping.items()}
-        except (FileNotFoundError, json.JSONDecodeError) as e:
+        except Exception as e:
             self.logger.warning(
                 f"Could not load country-dpid mapping from {mapping_path} ({e}). "
                 f"Falling back to hash-based mapping for all countries."
