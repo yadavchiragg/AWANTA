@@ -70,7 +70,9 @@ class EventTraceManager(TraceManager):
 
         # Spread unmapped countries across the switches that actually exist,
         # with dpids starting at 1 (matching the topology's numbering).
-        return (abs(hash(normalized_country)) % MininetConstants.NUM_FULL_MESH) + 1
+        import hashlib
+        country_hash = int(hashlib.md5(normalized_country.encode('utf-8')).hexdigest(), 16)
+        return (country_hash % MininetConstants.NUM_FULL_MESH) + 1
 
     def _event_callback(self, data):
         """Callback triggered when a new measurement event arrives."""
