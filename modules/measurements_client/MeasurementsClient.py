@@ -37,10 +37,11 @@ def validate_config(config):
         if key not in config:
             errors.append(f"Missing required key: '{key}'")
             continue
-        if not isinstance(config[key], expected_type):
+        val = config[key]
+        if not isinstance(val, expected_type) or (expected_type is int and isinstance(val, bool)):
             errors.append(
                 f"'{key}' should be of type {expected_type.__name__}, "
-                f"got {type(config[key]).__name__}"
+                f"got {type(val).__name__}"
             )
 
     # Value-level checks, only run if the type checks above already passed
