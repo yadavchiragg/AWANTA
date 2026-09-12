@@ -15,7 +15,7 @@ data_lock = threading.Lock()
 with open('config.json', 'r') as f:
     config = json.load(f)
 
-
+#Get the constants for the RIPE Atlas Measurements from config.json.
 target = config['Target']
 no_of_probes = config['NoOfProbes']
 from_countries = config['From']
